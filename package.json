@@ -1,0 +1,33 @@
+{
+  "name": "blog-symfony",
+  "version": "1.0.0",
+  "description": "Blog visant a m'entrainer sur symfony",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production",
+    "sass": "sass --watch ./assets/styles/app.scss:./assets/styles/app.css"
+  },
+  "author": "Quentin Sommesous",
+  "license": "ISC",
+  "dependencies": {
+    "@symfony/webpack-encore": "^1.6.1",
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@symfony/stimulus-bridge": "^2.1.0",
+    "core-js": "^3.18.3",
+    "install": "^0.13.0",
+    "npm": "^8.0.0",
+    "sass": "^1.43.2",
+    "sass-loader": "^12.0.0",
+    "stimulus": "^2.0.0",
+    "webpack-notifier": "^1.14.1"
+  }
+}

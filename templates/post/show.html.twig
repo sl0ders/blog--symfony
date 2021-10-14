@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block title %}{{ "post.show.title" | trans({"%postDate%": post.createdAt | date("d/m/Y")}) }}{% endblock %}
+
+{% block body %}
+    <div class="article">
+        <h1 class="section-heading">{{ post.title }}</h1>
+        <p><em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
+        <p>{{ post.content }}</p>
+    </div>
+    <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
+
+    {% for comment in comments %}
+        <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | date("d/m/Y") }}</em></h6>
+        <p>{{ comment.content }}</p>
+        <hr>
+    {% endfor %}
+    <br>
+    {% if is_granted("ROLE_USER") %}
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+        {% else %}
+        <h3 class="m-auto text-center mb-5">{{ "global.connection-obligatory"| trans }}</h3>
+    {% endif %}
+
+{% endblock %}
+
+

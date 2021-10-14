@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block title %}{{ "homePage.title" | trans }}{% endblock %}
+
+{% block body %}
+        <ul>
+            {% for chapter in chapters %}
+                <li class="list-unstyled">{{ 'chapter.chapter'| trans }} n°{{ chapter.number }} - <a class="text-decoration-none" href="{{ path('chapter_show', {'id': chapter.id}) }}">{{ chapter.title }}</a></li>
+            {% endfor %}
+        </ul>
+{% endblock %}

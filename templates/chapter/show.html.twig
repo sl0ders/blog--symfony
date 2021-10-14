@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block title %}{{ "chapter.show.title"| trans({"%chapterNumber%": chapter.number}) }}{% endblock %}
+{% block body %}
+    <h1 class="text-center m-auto">N°{{ chapter.number }} - {{ chapter.title }}</h1>
+    {% for post in chapter.posts %}
+        <a href="{{ path('post_show', {'id': post.id}) }}" class="text-decoration-none text-black">
+            <div class="article inComment">
+                <h3 class="section-heading"> {{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <br>
+                <p>
+                    <em>Chapitre <b> {{ chapter.number }}</b></em>
+                </p>
+                <br>
+                <a class="text-decoration-none" href="{{ path('post_show', {"id": post.id}) }}">
+                    <em>{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</em>
+                </a>
+                <div style="text-align: right; margin-right: 20px"><em>{{ post.createdAt|date("d / m / Y") }}</em></div>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}
+
+

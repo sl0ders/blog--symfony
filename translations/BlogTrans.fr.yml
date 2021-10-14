@@ -1,0 +1,35 @@
+post:
+    title: "Page d'acceuil des articles"
+    show:
+        title: 'Article du %postDate%'
+chapter:
+    Accueil:
+        title: "Page d'acceuil des chapitres"
+    show:
+        title: "Chapitre n°%chapterNumber%"
+    chapter: 'Chapitre'
+comment:
+    title: "Page d'acceuil des commentaire"
+    comment: 'Commentaire'
+    form:
+        label:
+            content: "Contenu de votre commentaire"
+login:
+    title: 'Page de connexion'
+register:
+    title: "Page d'enregistrement"
+homePage:
+    title: "Page d'accueil"
+user:
+    form:
+        label:
+            firstname: "Prenom"
+            lastname: "Nom de famille"
+            username: "Pseudo"
+            email: "Adresse email"
+            repeatPassword: "Retapez votre mot de passe une nouvelle fois"
+            password: "Tapez un mot de passe"
+
+global:
+    save: "Enregistrer"
+    connection-obligatory: 'Vous devez etre connecté avec un compte pour poster un commentaires'

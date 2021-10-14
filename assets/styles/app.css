@@ -1,0 +1,202 @@
+@import url(~bootstrap);
+body {
+  font-size: 20px;
+  color: black;
+  background-color: #fdf6ef;
+  font-family: "Lora", "Times New Roman", serif;
+}
+body #mainNav {
+  position: absolute;
+  border-bottom: 1px solid #e9ecef;
+  background-color: white;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body #mainNav .navbar-brand {
+  font-weight: 800;
+  color: #343a40;
+}
+body #mainNav .navbar-toggler {
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 13px;
+  text-transform: uppercase;
+  color: #343a40;
+}
+body #mainNav .navbar-nav li.nav-item a {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+body header.masthead {
+  margin-bottom: 50px;
+  position: relative;
+  background-size: cover;
+  background: #868e96 url("../../public/img/login.jpg") no-repeat fixed center center;
+}
+body header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #565c72;
+  opacity: 0.4;
+}
+body header.masthead .page-heading, body header.masthead .post-heading, body header.masthead .site-heading {
+  padding: 200px 0 150px;
+  color: #6b8a93;
+}
+body header.masthead .page-heading, body header.masthead .site-heading {
+  text-align: center;
+}
+body header.masthead .page-heading h1, body header.masthead .site-heading h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+body header.masthead .page-heading .subheading, body header.masthead .page-heading .subheading, body header.masthead .site-heading .subheading, body header.masthead .site-heading .subheading {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body header.masthead .post-heading h1 {
+  font-size: 2.5em;
+}
+body header.masthead .post-heading .meta, body header.masthead .post-heading .subheading {
+  line-height: 1.1;
+  display: block;
+}
+body header.masthead .post-heading .subheading {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 10px 0 30px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body header.masthead .post-heading .meta {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  font-family: "Lora", "Times New Roman", serif;
+}
+body header.masthead .post-heading .meta a {
+  color: #fff;
+}
+body .post-preview a {
+  color: #212529;
+}
+body .post-preview a:focus, body .post-preview a a:hover {
+  text-decoration: none;
+  color: #0085A1;
+}
+body .post-preview a .post-title {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+body .post-preview a .post-subtitle {
+  font-weight: 300;
+  margin: 0 0 10px;
+}
+body .post-preview .post-meta {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  color: #868e96;
+}
+body .post-preview .post-meta a {
+  text-decoration: none;
+  color: #212529;
+}
+body .post-preview .post-meta a:focus, body .post-preview .post-meta a:hover {
+  text-decoration: underline;
+  color: #0085A1;
+}
+body .floating-label-form-group {
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #dee2e6;
+}
+body .floating-label-form-group input, body .floating-label-form-group textarea {
+  font-size: 1.5em;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  resize: none;
+  border: none;
+  border-radius: 0;
+  background: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-family: "Lora", "Times New Roman", serif;
+}
+body .floating-label-form-group input::-webkit-input-placeholder, body .floating-label-form-group input::-webkit-input-placeholder, body .floating-label-form-group textarea::-webkit-input-placeholder, body .floating-label-form-group textarea::-webkit-input-placeholder {
+  color: #868e96;
+  font-family: "Lora", "Times New Roman", serif;
+}
+body .floating-label-form-group label {
+  font-size: 0.85em;
+  line-height: 1.764705882em;
+  position: relative;
+  z-index: 0;
+  top: 2em;
+  display: block;
+  margin: 0;
+  -webkit-transition: top 0.3s ease, opacity 0.3s ease;
+  transition: top 0.3s ease, opacity 0.3s ease;
+  vertical-align: baseline;
+  opacity: 0;
+}
+body .floating-label-form-group .help-block {
+  margin: 15px 0;
+}
+body .floating-label-form-group-with-value label {
+  top: 0;
+  opacity: 1;
+}
+body .floating-label-form-group-with-focus label {
+  color: #0085A1;
+}
+body form .form-group:first-child .floating-label-form-group {
+  border-top: 1px solid #dee2e6;
+}
+body footer {
+  padding: 50px 0 65px;
+}
+body footer .list-inline {
+  margin: 0;
+  padding: 0;
+}
+body footer .copyright {
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
+}
+body .article {
+  border: 2px solid #0c5460;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  padding: 40px;
+  box-shadow: 8px 8px 0 #4e555b;
+}
+body .article.inComment:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+body .comment {
+  border: 3px solid #b4bfc8;
+  box-shadow: 8px 8px 0 #a2acb4;
+  padding: 10px;
+}
+body table.dataTable thead .sorting:after, body table.dataTable thead .sorting:before, body table.dataTable thead .sorting_asc:after, body table.dataTable thead .sorting_asc:before, body table.dataTable thead .sorting_asc_disabled:after, body table.dataTable thead .sorting_asc_disabled:before, body table.dataTable thead .sorting_desc:after, body table.dataTable thead .sorting_desc:before, body table.dataTable thead .sorting_desc_disabled:after, body table.dataTable thead .sorting_desc_disabled:before {
+  bottom: 0.5em;
+}
+
+/*# sourceMappingURL=app.css.map */
