@@ -55,6 +55,11 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -151,6 +156,18 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enable): self
+    {
+        $this->enabled = $enable;
 
         return $this;
     }

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% trans_default_domain "BlogTrans" %}
+
+{% block title %}{{ "post.index.title"| trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <a href="{{ path('admin_post_new') }}">
+            <button class="btn btn-success float-end ">{{ "global.text.button.add"| trans }}</button>
+        </a>
+        {{ include('admin/layout/_datatable_template.html.twig') }}
+    </div>
+{% endblock %}

@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(CommentRepository $commentRepository, ChapterRepository $chapterRepository, PostRepository $postRepository): Response
     {
         $chapters = $chapterRepository->findAll();
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findBy(["enabled" => true], ["created_at" => "DESC"], 3);
         $comments = $commentRepository->findAll();
         return $this->render('index.html.twig', [
             "chapters" => $chapters,

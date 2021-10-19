@@ -38,7 +38,8 @@ class AppFixtures extends Fixture
             ->setFirstname("Quentin")
             ->setLastname("Sommesous")
             ->setPassword($this->encoder->encodePassword($userAdmin, "258790"))
-            ->setRoles(["ROLE_ADMIN", "ROLE_USER", "ROLE_SUPER_ADMIN"]);
+            ->setRoles(["ROLE_ADMIN", "ROLE_USER", "ROLE_SUPER_ADMIN"])
+            ->setEnabled(true);
         $manager->persist($userAdmin);
         for ($u = 1; $u <= 10; $u++) {
             $user = new User();
@@ -48,7 +49,8 @@ class AppFixtures extends Fixture
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
                 ->setPassword($this->encoder->encodePassword($userAdmin, "password"))
-                ->setRoles(["ROLE_USER"]);
+                ->setRoles(["ROLE_USER"])
+                ->setEnabled(true);
             $manager->persist($user);
             array_push($users, $user);
         }
@@ -58,7 +60,8 @@ class AppFixtures extends Fixture
             $chapter
                 ->setTitle($faker->sentence(2, true))
                 ->setCreatedAt($faker->dateTimeBetween('-10 month', 'now', 'UTC'))
-                ->setNumber($chap);
+                ->setNumber($chap)
+                ->setEnabled($faker->boolean());
             $manager->persist($chapter);
 
             for ($p = 1; $p <= mt_rand(2, 5); $p++) {
@@ -68,6 +71,7 @@ class AppFixtures extends Fixture
                     ->setContent($faker->realText(500))
                     ->setCreatedAt($faker->dateTimeBetween('-10 month', 'now', 'UTC'))
                     ->setChapter($chapter)
+                    ->setEnabled(true)
                     ->setAuthor($faker->randomElement($users));
                 $manager->persist($post);
 

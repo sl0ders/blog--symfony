@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block title %}{{ "user.title.show" | trans({"%fullname%" : user.fullName}) }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mx-auto my-5 pt-5">{{ user.fullName }}</h1>
+            <table class="table-responsive table">
+                <tr>
+                    <th>{{ "user.form.label.lastname" | trans }} :</th>
+                    <td>{{ user.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>{{ "user.form.label.firstname" | trans }} :</th>
+                    <td>{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>{{ "user.form.label.email" | trans }} :</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>{{ "user.form.label.birthday" | trans }} :</th>
+                    <td>{{ user.birthday  | date("d/m/Y")}}</td>
+                </tr>
+                <tr>
+                    <th>{{ "user.form.label.role" | trans }} :</th>
+                    <td>{% for role in user.roles %}
+                            {{ role }} <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+

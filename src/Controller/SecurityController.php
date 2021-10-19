@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -33,13 +34,16 @@ class SecurityController extends AbstractController
     }
 
     #[Route("/register", name: "app_register")]
-    public function register(Request $request, TranslatorInterface $translator): RedirectResponse|Response
+    public function register(Request $request, TranslatorInterface $translator, UserPasswordEncoderInterface $encoder): RedirectResponse|Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user->setEnabled(true);
+            $user->setRoles(["ROLE_USER"]);
+            $user->setPassword($encoder->encodePassword($user, $form->get("password")->getData()));
             $em->persist($user);
             $em->flush();
             $this->addFlash("success", $translator->trans("registration.success", [], "FlashesMessages"));

@@ -1,7 +1,8 @@
+{% trans_default_domain "BlogTrans" %}
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg w-100 fixed-top d-flex justify-content-around">
-    <div class="title">
-    <a class="navbar-brand text-white" href="/">Billet simple pour l'Alaska</a>
+<nav class="navbar navbar-expand-lg fixed-top justify-content-around bg-opacity-50 bg-dark py-1">
+    <div class="title d-flex align-items-center my-auto">
+        <a class="navbar-brand text-white" href="/">Billet simple pour l'Alaska</a>
     </div>
     <div class="menu">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -10,35 +11,46 @@
             Menu
             <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ path('home') }}">Accueil</a>
-                </li>
+        <div class="collapse navbar-collapse w-100" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto d-flex justify-content-around">
                 <li class="nav-item">
                     {% if is_granted("ROLE_USER") %}
-                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnection</a>
-                    {% else %}
-                        <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
-                        <a href="{{ path('app_register') }}" class="btn btn-primary">S'inscrire</a>
-                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('admin_home') }}"
+                       class="btn btn-primary">{{ "global.text.button.admin"| trans }}</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle btn btn-primary btn-sm text-white mx-2" href="#"
+                       id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ "global.text.menu" | trans }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item"
+                               href="{{ path('admin_post_index') }}">{{ "global.text.post" | trans }}</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ path('admin_chapter_index') }}">{{ "global.text.chapter" | trans }}</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ path('admin_comment_index') }}">{{ "global.text.comment" | trans }}</a></li>
+                        <li><a class="dropdown-item"
+                               href="{{ path('admin_user_index') }}">{{ "global.text.user" | trans }}</a></li>
+                    </ul>
                 </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{{ path('app_logout') }}"
+                       class="nav-link btn btn-danger btn-sm text-white">{{ "global.text.button.logout"| trans }}</a>
+                </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ path('app_login') }}"
+                           class="nav-link opacity-75 btn btn-primary btn-sm text-white mx-1">{{ "global.text.button.connexion"| trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_register') }}"
+                           class="nav-link opacity-75 btn btn-primary btn-sm text-white mx-1">{{ "global.text.button.register"| trans }}</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
 </nav>
-
-<!-- Page Header -->
-<header class="masthead">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Billet simple pour l'Alaska</h1>
-                    <h3><span class="subheading">Laissez moi vous raconter...</span></h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>

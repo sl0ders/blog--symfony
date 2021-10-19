@@ -1,0 +1,37 @@
+<link href="{{ asset('addons/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ asset('addons/Font-Awesome-fa-4/css/font-awesome.css') }}" rel="stylesheet" media="all">
+<link href="{{ asset('addons/vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ asset('addons/vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+<link href="{{ asset('addons/css/main.css') }}" rel="stylesheet" media="all">
+<div class="mt-5 pt-5">
+    <div class="page-wrapper font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">
+                        {% block form_title %}{% endblock %}
+                    </h2>
+                    {% block form_content %}
+
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">
+                                {% block form_button %}{% endblock %}
+                            </button>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Jquery JS-->
+<script src="{{ asset('addons/vendor/jquery/jquery.js') }}"></script>
+<!-- Vendor JS-->
+<script src="{{ asset('addons/vendor/select2/select2.min.js') }}"></script>
+<script src="{{ asset('addons/vendor/datepicker/moment.min.js') }}"></script>
+<script src="{{ asset('addons/vendor/datepicker/daterangepicker.js') }}"></script>
+<!-- Main JS-->
+<script src="{{ asset('addons/js/global.js') }}"></script>
+
+

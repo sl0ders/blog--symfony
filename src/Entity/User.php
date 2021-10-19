@@ -69,17 +69,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    #[Assert\DateTime]
-    private $birthday;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     #[Assert\NotBlank]
     #[Assert\Length(min: 2, max: 15)]
     private string $username;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
 
     #[Pure] public function __construct()
     {
@@ -287,5 +286,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->getFullName();
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

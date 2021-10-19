@@ -1,0 +1,13 @@
+{% extends 'admin/layout/_form_template.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block form_title %}{{ "post.new.title"| trans }}{% endblock %}
+
+{% block form_content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% block form_button %}
+        <button type="submit" class="btn btn-success">{{ "global.text.button.save"| trans }}</button>
+    {% endblock %}
+    {{ form_end(form) }}
+{% endblock %}
+

@@ -3,9 +3,54 @@
 {% block title %}{{ "homePage.title" | trans }}{% endblock %}
 
 {% block body %}
+    {% trans_default_domain "BlogTrans" %}
+    <!-- Page Header -->
+    <header class="masthead">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Billet simple pour l'Alaska</h1>
+                        <h3><span class="subheading">Laissez moi vous raconter...</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
         <ul>
             {% for chapter in chapters %}
-                <li class="list-unstyled">{{ 'chapter.chapter'| trans }} n°{{ chapter.number }} - <a class="text-decoration-none" href="{{ path('chapter_show', {'id': chapter.id}) }}">{{ chapter.title }}</a></li>
+                <li class="list-unstyled">
+                    {{ 'chapter.chapter'| trans }} n°{{ chapter.number }} -
+                    <a class="text-decoration-none"
+                       href="{{ path('chapter_show', {'id': chapter.id}) }}">{{ chapter.title }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>
+        <h5 class="mb-5 text-center">{{ "global.text.lastPost" | trans }}...</h5>
+        {% for post in posts %}
+            <a class="text-decoration-none text-black-50" href="{{ path('post_show', {'id': post.id}) }}">
+                <div class="shadow p-5 mb-5 bg-white rounded  scale">
+                    <h1 class="section-heading text-black">{{ post.title }}</h1>
+                    <p>{{ "chapter.chapter"|trans }} - <em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
+                    <p>
+                        {% if post.content| length > 400 %}
+                            {{ post.content | slice(0, 400) }}
+                            <a class="text-decoration-none" href="{{ path('post_show', {'id': post.id}) }}">
+                                {{ "global.text.Seetherest"|trans }}
+                            </a>
+                        {% else %}
+                            {{ post.content }}
+                        {% endif %}
+                    </p>
+                    <em class="float-end">{{ "global.text.by"| trans }} <span
+                                class="fw-bold text-black"> {{ post.author }}</span> {{ "global.text.at"| trans }}:
+                        <span
+                                class="fw-bold text-black">{{ post.createdAt|date("d/m/Y H:m:s") }}</span></em>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

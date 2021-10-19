@@ -26,7 +26,8 @@ class PostController extends AbstractController
             $comment
                 ->setAuthor($this->getUser())
                 ->setCreatedAt(new \DateTime())
-                ->setPost($post);
+                ->setPost($post)
+                ->setEnabled(true);
             $em->persist($comment);
             $this->addFlash("success", "comment.sent.success");
             return $this->redirectToRoute('post_show', ["id" => $post->getId()]);

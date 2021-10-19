@@ -1,5 +1,15 @@
 @import url(~bootstrap);
 
+* {
+  &.scale {
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+      transition-duration: 0.5s;
+    }
+  }
+}
+
 body {
   font-size: 20px;
   color: black;
@@ -240,14 +250,6 @@ body {
     margin-top: 40px;
     padding: 40px;
     box-shadow: 8px 8px 0 #4e555b;
-
-    &.inComment {
-      &:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-        transition-duration: 0.5s;
-      }
-    }
   }
 
   .comment {
@@ -256,15 +258,16 @@ body {
     padding: 10px;
   }
 
-  table {
-    &.dataTable {
-      thead {
-        .sorting, .sorting_asc, .sorting_asc_disabled, .sorting_desc, .sorting_desc_disabled {
-          &:after, &:before {
-            bottom: .5em;
-          }
-        }
-      }
-    }
+  .form-inline {
+    display: block;
+    display: -ms-flexbox;
+    /* display: flex; */
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }

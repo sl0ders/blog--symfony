@@ -3,25 +3,29 @@
 {% block title %}{{ "post.show.title" | trans({"%postDate%": post.createdAt | date("d/m/Y")}) }}{% endblock %}
 
 {% block body %}
-    <div class="article">
-        <h1 class="section-heading">{{ post.title }}</h1>
-        <p><em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
-        <p>{{ post.content }}</p>
-    </div>
-    <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
+    <div class="pt-4">
+        <div class="shadow p-3 m-5 bg-white rounded">
+            <h1 class="section-heading">{{ post.title }}</h1>
+            <p><em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
+            <p>{{ post.content }}</p>
+        </div>
+        <div class="col-md-9 m-auto">
+            <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
+            {% for comment in comments %}
+                <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | time_diff  }}</em></h6>
+                <p>{{ comment.content }}</p>
+                <hr>
+            {% endfor %}
+            <br>
+            {% if is_granted("ROLE_USER") %}
+                {{ form_start(form) }}
 
-    {% for comment in comments %}
-        <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | date("d/m/Y") }}</em></h6>
-        <p>{{ comment.content }}</p>
-        <hr>
-    {% endfor %}
-    <br>
-    {% if is_granted("ROLE_USER") %}
-        {{ form_start(form) }}
-        {{ form_end(form) }}
-        {% else %}
-        <h3 class="m-auto text-center mb-5">{{ "global.connection-obligatory"| trans }}</h3>
-    {% endif %}
+                {{ form_end(form) }}
+            {% else %}
+                <h3 class="m-auto text-danger text-center mb-5">{{ "global.text.connection-obligatory"| trans }}</h3>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
 

@@ -1,4 +1,10 @@
 @import url(~bootstrap);
+*.scale:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
 body {
   font-size: 20px;
   color: black;
@@ -185,18 +191,22 @@ body .article {
   padding: 40px;
   box-shadow: 8px 8px 0 #4e555b;
 }
-body .article.inComment:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  transition-duration: 0.5s;
-}
 body .comment {
   border: 3px solid #b4bfc8;
   box-shadow: 8px 8px 0 #a2acb4;
   padding: 10px;
 }
-body table.dataTable thead .sorting:after, body table.dataTable thead .sorting:before, body table.dataTable thead .sorting_asc:after, body table.dataTable thead .sorting_asc:before, body table.dataTable thead .sorting_asc_disabled:after, body table.dataTable thead .sorting_asc_disabled:before, body table.dataTable thead .sorting_desc:after, body table.dataTable thead .sorting_desc:before, body table.dataTable thead .sorting_desc_disabled:after, body table.dataTable thead .sorting_desc_disabled:before {
-  bottom: 0.5em;
+body .form-inline {
+  display: block;
+  display: -ms-flexbox;
+  /* display: flex; */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=app.css.map */

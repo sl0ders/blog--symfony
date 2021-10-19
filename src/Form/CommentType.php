@@ -15,10 +15,12 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                "label" => "comment.form.label.content"
+                "label" => " ",
+                "attr" => ["class" => "form-control", "placeholder" => "post.form.label.commentContent", "cols" => 9, "rows" => 5]
             ])
             ->add("submit", SubmitType::class, [
-                "label" => "global.save"
+                "label" => "global.text.button.save",
+                "attr" => ["class" => "form-control mt-2 mb-5 btn btn-primary"]
             ])
         ;
     }

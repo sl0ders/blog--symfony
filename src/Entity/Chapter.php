@@ -41,6 +41,11 @@ class Chapter
      */
     private $number;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -115,5 +120,22 @@ class Chapter
         $this->number = $number;
 
         return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function chapterIdentity(): string
+    {
+        return $this->getNumber() . " - " . $this->getTitle();
     }
 }

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "BlogTrans" %}
+{% block title %}{% endblock %}
+
+{% block body %}
+        <div class="row mt-5 pt-5">
+            <div class="col-6 m-auto">
+                <div class="d-flex justify-content-center">
+                    <a href="{{ path('admin_post_index') }}" class="text-black-50 text-decoration-none shadow p-3 mb-5 bg-white rounded p-5 m-2 scale">{{ "global.text.post" | trans }}</a>
+                    <a href="{{ path('admin_comment_index') }}" class="text-black-50 text-decoration-none shadow p-3 mb-5 bg-white rounded p-5 m-2 scale">{{ "global.text.comment" | trans }}</a>
+                    <a href="{{ path('admin_chapter_index') }}" class="text-black-50 text-decoration-none shadow p-3 mb-5 bg-white rounded p-5 m-2 scale">{{ "global.text.chapter" | trans }}</a>
+                    <a href="{{ path('admin_user_index') }}" class="text-black-50 text-decoration-none shadow p-3 mb-5 bg-white rounded p-5 m-2 scale">{{ "global.text.user" | trans }}</a>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

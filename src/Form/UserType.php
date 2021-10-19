@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -19,26 +20,31 @@ class UserType extends AbstractType
     {
         $builder
             ->add("firstname", TextType::class, [
-                "label" => "user.form.label.firstname"
+                "label" => " ",
+                "attr" => ["class" => "form-control", "placeholder" => "user.form.label.firstname"]
             ])
             ->add("lastname", TextType::class, [
-                "label" => "user.form.label.lastname"
+                "label" => " ",
+                "attr" => ["class" => "form-control", "placeholder" => "user.form.label.lastname"]
             ])
             ->add("username", TextType::class, [
-                "label" => "user.form.label.username"
+                "label" => " ",
+                "attr" => ["class" => "form-control", "placeholder" => "user.form.label.username"]
             ])
             ->add("email", EmailType::class, [
-                "label" => "user.form.label.email"
+                "label" => " ",
+                "attr" => ["class" => "form-control", "placeholder" => "user.form.label.email"]
             ])
             ->add("password", RepeatedType::class, [
                 "type" => PasswordType::class,
-                'invalid_message' => 'user.form.password.does_not_coincide',
+                'invalid_message' => 'Les mots de passe ne coïncide pas',
                 'options' => ['attr' => ['class' => 'password-field']],
-                'first_options' => ['label' => 'user.form.label.password'],
-                'second_options' => ['label' => 'user.form.label.repeatPassword'],
+                'first_options' => ['label' => ' ', "attr" => ["class" => "form-control", "placeholder" => "user.form.label.password"]],
+                'second_options' => ['label' => ' ', "attr" => ["class" => "form-control", "placeholder" => "user.form.label.repeatPassword"]],
             ])
         ->add("submit", SubmitType::class, [
-            "label" => "global.save"
+            "label" => "global.text.button.save",
+            "attr" => ["class" => "btn btn-success mt-3", "placeholder" => "user.form.label.birthday"]
         ]);
     }
 

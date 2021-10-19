@@ -1,42 +1,61 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain "BlogTrans" %}
-{% block title %}{{ "login.title" | trans }}{% endblock %}
+{% block title %}{{ "global.text.signIn" | trans }}{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <link href="{{ asset('addons/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet"
+          media="all">
+    <link href="{{ asset('addons/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('addons/vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('addons/vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('addons/css/main.css') }}" rel="stylesheet" media="all">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    <div class="page-wrapper font-robo mt-5 pt-5">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-body">
+                    <h2 class="title">
+                        {% block form_title %}{% endblock %}
+                    </h2>
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                {{ "global.text.ifyouwantconnected" | trans }} {{ app.user.username }}, <a
+                                        href="{{ path('app_logout') }}">{{ "global.text.button.logout"| trans }} ?</a>
+                            </div>
+                        {% else %}
+                            <h1 class="h3 mb-3 font-weight-normal">{{ "global.text.signIn"| trans }}</h1>
+                            <label class="mb-2" for="inputEmail">{{ "user.form.label.email" | trans }}</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                   class="mb-2 input--style-1" autocomplete="email" required autofocus>
+                            <label for="inputPassword">{{ "user.form.label.password"| trans }}</label>
+                            <input type="password" name="password" id="inputPassword" class="input--style-1"
+                                   autocomplete="current-password" required>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <div class="p-t-20">
+                                <button class="btn btn--radius btn--green text-white" type="submit">
+                                    {{ "global.text.button.connexion"| trans }}
+                                </button>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <!-- Jquery JS-->
+    <script src="{{ asset('addons/vendor/jquery/jquery.js') }}"></script>
+    <!-- Vendor JS-->
+    <script src="{{ asset('addons/vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('addons/vendor/datepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('addons/vendor/datepicker/daterangepicker.js') }}"></script>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <!-- Main JS-->
+    <script src="{{ asset('addons/js/global.js') }}"></script>
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}

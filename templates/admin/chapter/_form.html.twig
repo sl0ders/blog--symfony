@@ -1,0 +1,15 @@
+{% extends "admin/layout/_form_template.html.twig" %}
+{% trans_default_domain "BlogTrans" %}
+{% block form_title %}{{ "chapter.new.title"| trans }}{% endblock %}
+
+
+{% block form_content %}
+    {{ form_start(form) }}
+    <div class="input-group">
+        {{ form_row(form.title) }}
+    </div>
+    {% block form_button %}
+        {{ form_row(form.submit) }}
+    {% endblock %}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,5 +1,10 @@
 {% trans_default_domain "BlogTrans" %}
+{% extends "admin/layout/_form_template.html.twig" %}
+{% block form_title %}{{ "register.form.title"| trans }}{% endblock %}
 
-{{ form_start(form) }}
+{% block form_content %}
+    {{ form_start(form) }}
     {{ form_widget(form) }}
-{{ form_end(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
