@@ -6,6 +6,7 @@ use App\Datatables\ChapterDatatable;
 use App\Datatables\PostDatatable;
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\PostRepository;
 use Exception;
 use Sg\DatatablesBundle\Datatable\DatatableFactory;
 use Sg\DatatablesBundle\Response\DatatableResponse;
@@ -50,15 +51,20 @@ class AdminPostController extends AbstractController
     }
 
     #[Route("/new", name: "admin_post_new")]
-    public function new(Request $request)
+    public function new(Request $request, PostRepository $postRepository): RedirectResponse|Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
+        $lastPost = $postRepository->findOneBy([], ["number" => "DESC"]);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $user = $this->getUser();
+            if($lastPost instanceof Post) {
+                $post->setNumber($lastPost->getNumber() + 1);
+            } else {
+                $post->setNumber(1);
+            }
             $post->setAuthor($user);
             $entityManager->persist($post);
             $entityManager->flush();

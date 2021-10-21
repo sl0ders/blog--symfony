@@ -32,17 +32,18 @@
         <h5 class="mb-5 text-center">{{ "global.text.lastPost" | trans }}...</h5>
         {% for post in posts %}
             <a class="text-decoration-none text-black-50" href="{{ path('post_show', {'id': post.id}) }}">
-                <div class="shadow p-5 mb-5 bg-white rounded  scale">
+                <div class="shadow p-5 mb-5 bg-white rounded scale">
                     <h1 class="section-heading text-black">{{ post.title }}</h1>
+                    <img src="{{ vich_uploader_asset(post, "imageFile") | imagine_filter("my_thumb") }}" alt="">
                     <p>{{ "chapter.chapter"|trans }} - <em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
                     <p>
                         {% if post.content| length > 400 %}
-                            {{ post.content | slice(0, 400) }}
+                            {{ post.content | slice(0, 400) | raw }}
                             <a class="text-decoration-none" href="{{ path('post_show', {'id': post.id}) }}">
                                 {{ "global.text.Seetherest"|trans }}
                             </a>
                         {% else %}
-                            {{ post.content }}
+                            {{ post.content | raw }}
                         {% endif %}
                     </p>
                     <em class="float-end">{{ "global.text.by"| trans }} <span

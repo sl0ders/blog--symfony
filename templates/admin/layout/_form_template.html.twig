@@ -33,5 +33,16 @@
 <script src="{{ asset('addons/vendor/datepicker/daterangepicker.js') }}"></script>
 <!-- Main JS-->
 <script src="{{ asset('addons/js/global.js') }}"></script>
-
+<!-- TinyMCE -->
+<script src="https://cdn.tiny.cloud/1/t8wsrw0o08y3nbn52u7y9sj2h0ec3r664cralpe9txjj4yhc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        language : "fr_FR",
+        selector: 'textarea',
+        plugins: 'a_tinymce_plugin',
+        toolbar_mode: 'floating',
+        a_plugin_option: true,
+        a_configuration_option: 400
+    });
+</script>
 

@@ -20,6 +20,7 @@ post:
             createdAt: "Date de parution de l'article"
             enabledQuestion: "Article activé ?"
             chapterSelect: "Sélection du chapitre"
+            picture: "Ajout d'une image d'illustration a l'article"
     new:
         title: "Creation d'un nouvel article"
 chapter:

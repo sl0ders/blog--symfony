@@ -1,0 +1,3 @@
+-   Possibilité D'ajout d'image dans les post
+-   Ajout wingmce pour edition et creation post
+-   Systeme de mise en cache

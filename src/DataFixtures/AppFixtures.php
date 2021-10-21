@@ -66,13 +66,16 @@ class AppFixtures extends Fixture
 
             for ($p = 1; $p <= mt_rand(2, 5); $p++) {
                 $post = new Post();
+                $post->setUpdatedAt(new \DateTime());
                 $post
                     ->setTitle($faker->sentence(3, true))
                     ->setContent($faker->realText(500))
                     ->setCreatedAt($faker->dateTimeBetween('-10 month', 'now', 'UTC'))
                     ->setChapter($chapter)
+                    ->setNumber($p)
                     ->setEnabled(true)
-                    ->setAuthor($faker->randomElement($users));
+                    ->setAuthor($faker->randomElement($users))
+                    ->setImage($faker->image());
                 $manager->persist($post);
 
 //                for ($i = 1; $i <= 60; $i++) {

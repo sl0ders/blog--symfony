@@ -75,7 +75,7 @@ class ChapterDatatable extends AbstractDatatable
                 "title" => "actif"
             ])
             ->add(null, ActionColumn::class, [
-                    'start_html' => '<div class="start_actions row" style="height: 50px;text-align: center; margin:auto;">',
+                    'start_html' => '<div class="start_actions row" style="height: 80px;text-align: center; margin:auto;">',
                     'title' => $this->translator->trans('sg.datatables.actions.title'),
                     'end_html' => '</div>',
                     "width" => "50px",
@@ -118,6 +118,18 @@ class ChapterDatatable extends AbstractDatatable
                             'render_if' => function ($row): bool {
                                 return $row['enabled'];
                             },
+                        ],[
+                            'route' => "admin_post_new",
+                            'route_parameters' => [
+                                'id' => 'id'
+                            ],
+                            'icon' => 'fa fa-plus',
+                            'attributes' => [
+                                'rel' => 'tooltip',
+                                'title' => $this->translator->trans('global.text.button.add', [], 'BlogTrans'),
+                                'class' => 'btn btn-success btn-xs m-auto',
+                                'role' => 'button'
+                            ],
                         ],
                     ],
                 ]

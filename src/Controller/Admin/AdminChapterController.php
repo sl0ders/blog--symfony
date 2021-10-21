@@ -56,10 +56,14 @@ class AdminChapterController extends AbstractController
         $form->handleRequest($request);
         $lastChapter = $chapterRepository->findOneBy([], ["number" => "DESC"]);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $chapter->setEnabled(true);
             $chapter->setCreatedAt(new \DateTime());
-            $chapter->setNumber($lastChapter->getNumber() + 1);
+            if ($lastChapter instanceof Chapter) {
+                $chapter->setNumber($lastChapter->getNumber() + 1);
+            } else {
+                $chapter->setNumber(1);
+            }
+
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($chapter);
