@@ -111,10 +111,8 @@
                     dataType: "json",
                     success: function (data) {
                         let result = JSON.stringify(data);
-                        rateLength.html(result);
+                        location.reload(true);
                         userRate.html(`<div class='text-success text-center'>{{ "global.text.thanksForRate" | trans }}</div>`);
-
-                        notificationLength.text(parseInt(notificationLength.html()) + 1)
                     }
                 }
             )
