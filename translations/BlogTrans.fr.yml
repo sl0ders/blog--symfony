@@ -1,114 +1,133 @@
 post:
-    title: "Page d'acceuil des articles"
-    show:
-        title: 'Article du %postDate%'
-    index:
-        title: "Liste des articles"
-    datatable:
-        title: "Titre de l'article"
-        chapterNumber: 'Numero du chapitre'
-        extract: "Extrait de l'article"
-    disabled:
-        successFully: "L'article a bien été désactivé, il n'apparaitra plus sur la page d'accueil"
-    enabled:
-        successFully: "L'article a bien été activé, il apparaitra désormais sur la page d'accueil"
-    form:
-        label:
-            commentContent: "Contenu de votre commentaire"
-            title: "Titre de l'article"
-            content: "Contenu de l'article"
-            createdAt: "Date de parution de l'article"
-            enabledQuestion: "Article activé ?"
-            chapterSelect: "Sélection du chapitre"
-            picture: "Ajout d'une image d'illustration a l'article"
-    new:
-        title: "Creation d'un nouvel article"
+  title: "Page d'acceuil des articles"
+  show:
+    title: 'Article du %postDate%'
+  index:
+    title: "Liste des articles"
+  datatable:
+    title: "Titre de l'article"
+    chapterNumber: 'Numero du chapitre'
+    extract: "Extrait de l'article"
+  disabled:
+    successFully: "L'article a bien été désactivé, il n'apparaitra plus sur la page d'accueil"
+  enabled:
+    successFully: "L'article a bien été activé, il apparaitra désormais sur la page d'accueil"
+  form:
+    label:
+      commentContent: "Contenu de votre commentaire"
+      title: "Titre de l'article"
+      content: "Contenu de l'article"
+      createdAt: "Date de parution de l'article"
+      enabledQuestion: "Article activé ?"
+      chapterSelect: "Sélection du chapitre"
+      picture: "Ajout d'une image d'illustration a l'article"
+  new:
+    title: "Creation d'un nouvel article"
 chapter:
-    Accueil:
-        title: "Page d'acceuil des chapitres"
-    show:
-        title: "Chapitre n°%chapterNumber%"
-    chapter: 'Chapitre'
-    new:
-        title: "Ajout d'un nouveau chapitre"
-    form:
-        label:
-            title: "Titre du chapitre"
-    datatable:
-        title: 'Titre du chapitre'
-        postLength: "Nombre d'article"
+  Accueil:
+    title: "Page d'acceuil des chapitres"
+  show:
+    title: "Chapitre n°%chapterNumber%"
+  chapter: 'Chapitre'
+  new:
+    title: "Ajout d'un nouveau chapitre"
+  form:
+    label:
+      title: "Titre du chapitre"
+  datatable:
+    title: 'Titre du chapitre'
+    postLength: "Nombre d'article"
 comment:
-    title: "Page d'acceuil des commentaire"
-    comment: 'Commentaire'
-    form:
-        label:
-            content: "Contenu de votre commentaire"
-    index:
-        title: 'Liste des commentaires'
-    show:
-        title: 'Detail du commentaire'
-    datatable:
-        postTitle: "Titre de l'article lié"
-        extract: 'Extrait du commentaire'
-        createdAt: 'Date de creation du commentaire'
-    isEnabled: 'Le commentaire a bien été débloquer'
-    isDisabled: 'Le commentaire a bien été bloquer'
+  title: "Page d'acceuil des commentaire"
+  comment: 'Commentaire'
+  form:
+    label:
+      content: "Contenu de votre commentaire"
+  index:
+    title: 'Liste des commentaires'
+  show:
+    title: 'Detail du commentaire'
+  datatable:
+    postTitle: "Titre de l'article lié"
+    extract: 'Extrait du commentaire'
+    createdAt: 'Date de creation du commentaire'
+  isEnabled: 'Le commentaire a bien été débloquer'
+  isDisabled: 'Le commentaire a bien été bloquer'
 
 login:
-    title: 'Page de connexion'
+  title: 'Page de connexion'
 register:
-    title: "Page d'enregistrement"
-    form:
-        title: "Formulaire d'inscription"
+  title: "Page d'enregistrement"
+  form:
+    title: "Formulaire d'inscription"
 homePage:
-    title: "Page d'accueil"
+  title: "Page d'accueil"
 user:
-    form:
-        label:
-            firstname: "Prenom"
-            lastname: "Nom de famille"
-            username: "Pseudo"
-            email: "Adresse email"
-            repeatPassword: "Retapez votre mot de passe une nouvelle fois"
-            password: "Tapez un mot de passe"
-            birthday: "Date de naissance"
-            role: "Role de l'utilisateur"
-        password:
-            does_not_coincide: "Les mots de passe ne coincident pas"
+  form:
+    label:
+      firstname: "Prenom"
+      lastname: "Nom de famille"
+      username: "Pseudo"
+      email: "Adresse email"
+      repeatPassword: "Retapez votre mot de passe une nouvelle fois"
+      password: "Tapez un mot de passe"
+      birthday: "Date de naissance"
+      role: "Role de l'utilisateur"
+    password:
+      does_not_coincide: "Les mots de passe ne coincident pas"
 
-    datatable:
-        username: 'Pseudo'
-        fullname: 'Nom complet'
-        email: 'Adresse email'
-        createdAt: 'Date de création'
-        birthday: "Date d'anniversaire"
-        roles: 'Roles'
-    index:
-        title: 'Liste des utilisateurs'
-    title:
-        show: 'Detail de %fullname%'
+  datatable:
+    username: 'Pseudo'
+    fullname: 'Nom complet'
+    email: 'Adresse email'
+    createdAt: 'Date de création'
+    birthday: "Date d'anniversaire"
+    roles: 'Roles'
+  index:
+    title: 'Liste des utilisateurs'
+  title:
+    show: 'Detail de %fullname%'
 global:
-    text:
-        connection-obligatory: 'Vous devez etre connecté avec un compte pour poster un commentaires'
-        by: 'Par'
-        at: 'Le'
-        lastPost: 'Les trois derniers articles postés'
-        post: 'Articles'
-        see: 'Visualiser'
-        enabled: 'Activer'
-        disabled: 'Désactiver'
-        login: 'Se connecter'
-        signIn: "Se connecter"
-        comment: 'Commentaire'
-        chapter: 'Chapitre'
-        user: 'Utilisateur'
-        ifyouwantconnected: 'Vous etes deja connecter en tant que '
-        Seetherest: '...Voir la suite'
-        button:
-            connexion: 'Connection'
-            save: "Enregistrer"
-            logout: 'Déconnection'
-            admin: 'Administration'
-            register: "S'inscrire"
-            add: 'Ajouter +'
-        menu: 'menu'
+  text:
+    connection-obligatory: 'Vous devez etre connecté avec un compte pour poster un commentaires'
+    by: 'Par'
+    at: 'Le'
+    lastPost: 'Les trois derniers articles postés'
+    post: 'Articles'
+    notification: 'Notifications'
+    see: 'Visualiser'
+    enabled: 'Activer'
+    disabled: 'Désactiver'
+    login: 'Se connecter'
+    signIn: "Se connecter"
+    comment: 'Commentaire'
+    chapter: 'Chapitre'
+    user: 'Utilisateur'
+    ifyouwantconnected: 'Vous etes deja connecter en tant que '
+    Seetherest: '...Voir la suite'
+    menu: 'menu'
+    edit: 'Éditer'
+    button:
+      connexion: 'Connection'
+      save: "Enregistrer"
+      logout: 'Déconnection'
+      admin: 'Administration'
+      register: "S'inscrire"
+      add: 'Ajouter +'
+    rate: ' vote'
+    whatThingOfThisPost: 'Que pensez-vous de cet article ?'
+    thanksForRate: 'Merci pour le vote ! '
+    alreadyVoted: 'Vos avez deja voté !'
+
+notification:
+  user:
+    add: "Un nouvel utilisateur vient de s'inscrire sur le blog"
+  comment:
+    new: 'Un nouveau commentaire a été posté'
+  index:
+    title: 'Liste des notifications'
+  datatable:
+    createdAt: 'Date de création'
+    content: 'Message'
+  rate:
+    newRate: "Un nouveau vote vient d'etre attribué a l'article du %postAt%"

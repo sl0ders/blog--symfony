@@ -11,25 +11,115 @@
             </div>
             <p><em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
             <p>{{ post.content | raw }}</p>
+            <div class="d-flex">
+                <i onclick="rating(1)" class="text-decoration-none text-warning far fa-star"
+                   style="cursor: pointer"> </i>
+                <i onclick="rating(2)" class="text-warning far fa-star"
+                   style="cursor: pointer"> </i>
+                <i onclick="rating(3)" class="text-warning far fa-star"
+                   style="cursor: pointer"> </i>
+                <i onclick="rating(4)" class="text-warning far fa-star"
+                   style="cursor: pointer"> </i>
+                <i onclick="rating(5)" class="text-warning far fa-star"
+                   style="cursor: pointer"> </i>
+                <em class="h6 d-flex">
+                    <div class="rateLength"> {{ post.ratings | length }} </div> {{ "global.text.rate" | trans }}{{ post.ratings| length > 1 ? "s" }}
+                </em>
+            </div>
+            <hr>
+            {% if is_granted("ROLE_USER") %}
+                {% if not userRatingExist %}
+                    <div class="text-center user-rate">
+                        <p>{{ "global.text.whatThingOfThisPost" | trans }}</p>
+                        <a id="star-1" onclick="rating(1)" class="text-decoration-none text-warning far fa-star fa-3x"
+                           style="cursor: pointer"> </a>
+                        <a id="star-2" onclick="rating(2)" class="text-decoration-none text-warning far fa-star fa-3x"
+                           style="cursor: pointer"> </a>
+                        <a id="star-3" onclick="rating(3)" class="text-decoration-none text-warning far fa-star fa-3x"
+                           style="cursor: pointer"> </a>
+                        <a id="star-4" onclick="rating(4)" class="text-decoration-none text-warning far fa-star fa-3x"
+                           style="cursor: pointer"> </a>
+                        <a id="star-5" onclick="rating(5)" class="text-decoration-none text-warning far fa-star fa-3x"
+                           style="cursor: pointer"> </a>
+                    </div>
+                {% else %}
+                    <p class="text-success text-center">{{ "global.text.alreadyVoted" | trans }}</p>
+                {% endif %}
+            {% endif %}
+
         </div>
         <div class="col-md-9 m-auto">
             <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
             {% for comment in comments %}
-                <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | time_diff  }}</em></h6>
+                <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | time_diff }}</em></h6>
                 <p>{{ comment.content }}</p>
                 <hr>
             {% endfor %}
             <br>
             {% if is_granted("ROLE_USER") %}
                 {{ form_start(form) }}
-
                 {{ form_end(form) }}
             {% else %}
                 <h3 class="m-auto text-danger text-center mb-5">{{ "global.text.connection-obligatory"| trans }}</h3>
             {% endif %}
         </div>
     </div>
+    <script>
+        let rateLength = $(".rateLength")
+        let userRate = $(".user-rate")
+        let notificationLength = $(".notif-lenght")
+        let star1 = $("#star-1")
+        let star2 = $("#star-2")
+        let star3 = $("#star-3")
+        let star4 = $("#star-4")
+        let star5 = $("#star-5")
+        star1.hover(e => {
+            star1.toggleClass("fas")
+        })
+        star2.hover(e => {
+            star1.toggleClass("fas")
+            star2.toggleClass("fas")
+        })
+        star3.hover(e => {
+            star1.toggleClass("fas")
+            star2.toggleClass("fas")
+            star3.toggleClass("fas")
+        })
+        star4.hover(e => {
+            star1.toggleClass("fas")
+            star2.toggleClass("fas")
+            star3.toggleClass("fas")
+            star4.toggleClass("fas")
+        })
+        star5.hover(e => {
+            star1.toggleClass("fas")
+            star2.toggleClass("fas")
+            star3.toggleClass("fas")
+            star4.toggleClass("fas")
+            star5.toggleClass("fas")
+        })
 
+        function rating(rate) {
+            $.ajax({
+                    type: 'POST',
+                    url: "{{ path('admin_post_addRate') }}",
+                    data: {
+                        rate,
+                        postId: {{ post.id }},
+                        userId:{{ app.user ? app.user.id }}
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        let result = JSON.stringify(data);
+                        rateLength.html(result);
+                        userRate.html(`<div class='text-success text-center'>{{ "global.text.thanksForRate" | trans }}</div>`);
+
+                        notificationLength.text(parseInt(notificationLength.html()) + 1)
+                    }
+                }
+            )
+        }
+    </script>
 {% endblock %}
 
 

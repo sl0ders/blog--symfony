@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ChapterRepository;
 use App\Repository\CommentRepository;
+use App\Repository\NotificationRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

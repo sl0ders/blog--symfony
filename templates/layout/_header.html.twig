@@ -1,7 +1,14 @@
 {% trans_default_domain "BlogTrans" %}
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top justify-content-around bg-opacity-50 bg-dark py-1">
-    <div class="title d-flex align-items-center my-auto">
+<style>
+    .dropdown-menu[data-bs-popper] {
+        right: 0 !important;
+        left: auto;
+    }
+</style>
+{% set notifRead = 0 %}
+<nav class="navbar navbar-expand-lg fixed-top justify-content-between bg-opacity-50 bg-dark py-1">
+    <div class="title d-flex align-items-center my-auto px-5">
         <a class="navbar-brand text-white" href="/">Billet simple pour l'Alaska</a>
     </div>
     <div class="menu">
@@ -12,7 +19,7 @@
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse w-100" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto d-flex justify-content-around">
+            <ul class="navbar-nav ml-auto d-flex justify-content-around px-2">
                 <li class="nav-item">
                     {% if is_granted("ROLE_USER") %}
                     {% if is_granted("ROLE_ADMIN") %}
@@ -40,6 +47,7 @@
                     <a href="{{ path('app_logout') }}"
                        class="nav-link btn btn-danger btn-sm text-white">{{ "global.text.button.logout"| trans }}</a>
                 </li>
+
                 {% else %}
                     <li class="nav-item">
                         <a href="{{ path('app_login') }}"
@@ -53,4 +61,58 @@
             </ul>
         </div>
     </div>
+    {% if is_granted("ROLE_ADMIN") %}
+        <div class="nav-item dropdown dropleft">
+            <a class="mx-5 position-relative" href="#" id="dropDownNotif" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                <img src="{{ asset('addons/images/notification.png') }}" alt="" width="30">
+            </a>
+            <div class="notif-lenght">{{ notificationsNotRead | length }}</div>
+            <ul class="dropdown-menu notif" aria-labelledby="navbarDropdown">
+                {% for notification in notifications %}
+                    {% if not notification.readAt %}
+                        <li class="dropdown-item" style="background: rgba(7,51,109,0.8); height: auto">
+                            {% if notification.link and notification.linkId %}
+                            <a class="text-white notification" onclick="handleClick(this.id)" id="{{ notification.id }}" href="{{ path(notification.link, {"id": notification.linkId}) }}"></a>
+                            {% else %}
+                                <a class="text-white" href="{{ path("admin_notification_show", {"id": notification.id}) }}">{{ notification.content }}</a>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <li class="dropdown-item">
+                        {% if notification.link and notification.linkId %}
+                            <a class="text-black" href="{{ path(notification.link, {"id": notification.linkId}) }}">{{ notification.content }}</a>
+                        {% else %}
+                            <a class="text-black" href="{{ path("admin_notification_show", {"id": notification.id}) }}">{{ notification.content }}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </nav>
+
+<script>
+
+    function handleClick(id) {
+        $.ajax({
+            type: 'GET',
+            url: "{{ path('admin_notification_changeReadAt') }}",
+            data: {id},
+            dataType: 'json',
+
+            success: function () {
+                if (e.target.id) {
+                    let url = '{{ path("admin_notification_show", {'id': 'id'}) }}';
+                    url = url.replace("id", id);
+                    window.location.replace(url);
+                } else
+                    alert("vide");
+            }
+        }, "json");
+        return false;
+    }
+</script>
+
+

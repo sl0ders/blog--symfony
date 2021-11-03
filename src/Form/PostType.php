@@ -38,7 +38,9 @@ class PostType extends AbstractType
             ->add("imageFile", VichImageType::class, [
                 "label" => "post.form.label.picture",
                 'required' => false,
-                'allow_delete' => true,
+                'allow_delete' => false,
+                "download_label" => false,
+                "imagine_pattern" => "my_thumb",
                 "attr" => ["class" => "form-control mt-2"]
             ])
             ->add('enabled', CheckboxType::class, [

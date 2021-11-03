@@ -6,8 +6,10 @@ use App\Entity\Chapter;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -24,7 +26,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(ObjectManager $manager)
     {
@@ -66,7 +68,7 @@ class AppFixtures extends Fixture
 
             for ($p = 1; $p <= mt_rand(2, 5); $p++) {
                 $post = new Post();
-                $post->setUpdatedAt(new \DateTime());
+                $post->setUpdatedAt(new DateTime());
                 $post
                     ->setTitle($faker->sentence(3, true))
                     ->setContent($faker->realText(500))

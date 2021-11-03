@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ "" | trans({"%postDate%": post.createdAt}) }}{% endblock %}
+
+{% block body %}
+    {{ include('admin/post/_form.html.twig') }}
+{% endblock %}
+
+

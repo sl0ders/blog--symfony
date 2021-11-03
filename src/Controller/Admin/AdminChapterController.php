@@ -6,10 +6,12 @@ use App\Datatables\ChapterDatatable;
 use App\Entity\Chapter;
 use App\Form\ChapterType;
 use App\Repository\ChapterRepository;
+use DateTime;
 use Exception;
 use Sg\DatatablesBundle\Datatable\DatatableFactory;
 use Sg\DatatablesBundle\Response\DatatableResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +51,7 @@ class AdminChapterController extends AbstractController
     }
 
     #[Route("/new", name: "admin_chapter_new")]
-    public function new(Request $request, ChapterRepository $chapterRepository)
+    public function new(Request $request, ChapterRepository $chapterRepository): RedirectResponse|Response
     {
         $chapter = new Chapter();
         $form = $this->createForm(ChapterType::class, $chapter);
@@ -57,14 +59,12 @@ class AdminChapterController extends AbstractController
         $lastChapter = $chapterRepository->findOneBy([], ["number" => "DESC"]);
         if ($form->isSubmitted() && $form->isValid()) {
             $chapter->setEnabled(true);
-            $chapter->setCreatedAt(new \DateTime());
+            $chapter->setCreatedAt(new DateTime());
             if ($lastChapter instanceof Chapter) {
                 $chapter->setNumber($lastChapter->getNumber() + 1);
             } else {
                 $chapter->setNumber(1);
             }
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($chapter);
             $em->flush();
@@ -77,7 +77,7 @@ class AdminChapterController extends AbstractController
     }
 
     #[Route("/enabled/{id}", name: "admin_chapter_enabled")]
-    public function enabled(Chapter $chapter, TranslatorInterface $translator)
+    public function enabled(Chapter $chapter, TranslatorInterface $translator): RedirectResponse
     {
         if ($chapter->getEnabled() === true) {
             $chapter->setEnabled(false);

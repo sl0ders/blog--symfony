@@ -4,24 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+#[Route("/comment")]
 class CommentController extends AbstractController
 {
-    #[Route('/comment', name: 'comment')]
-    public function index(): Response
-    {
-        return $this->render('comment/index.html.twig', [
-            'controller_name' => 'CommentController',
-        ]);
-    }
-
-
-
     #[Route("/enabled/{id}", name: "admin_comment_enabled")]
     public function enabled(Comment $comment, TranslatorInterface $translator): RedirectResponse
     {

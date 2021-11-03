@@ -41,7 +41,6 @@ class AdminUserController extends AbstractController
         if ($isAjax) {
             $this->datatableResponse->setDatatable($datatable);
             $this->datatableResponse->getDatatableQueryBuilder();
-
             return $this->datatableResponse->getResponse();
         }
         return $this->render("admin/user/index.html.twig", [

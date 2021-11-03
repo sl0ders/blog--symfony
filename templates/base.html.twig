@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('addons/font-awesome/css/all.min.css') }}">
+    <script src="{{ asset('addons/js/jquery-3.1.1.min.js') }}"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -11,8 +13,8 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="">
-{{ include('layout/_header.html.twig') }}
+<body>
+{{ render(controller('App\\Controller\\HeaderBundleController::getNotification')) }}
 {% block body %}{% endblock %}
 
 </body>

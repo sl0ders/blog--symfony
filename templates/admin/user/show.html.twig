@@ -19,10 +19,6 @@
                     <td>{{ user.email }}</td>
                 </tr>
                 <tr>
-                    <th>{{ "user.form.label.birthday" | trans }} :</th>
-                    <td>{{ user.birthday  | date("d/m/Y")}}</td>
-                </tr>
-                <tr>
                     <th>{{ "user.form.label.role" | trans }} :</th>
                     <td>{% for role in user.roles %}
                             {{ role }} <br>

@@ -270,4 +270,31 @@ body {
     -ms-flex-align: center;
     align-items: center;
   }
+
+  .dropdown-menu {
+    &.notif {
+      background-color: rgba(255, 255, 255, 0.5);
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .notif-lenght {
+    position: absolute;
+    border: transparent;
+    border-radius: 15px;
+    background: brown;
+    color: white;
+    font-size: 0.8rem;
+    width: 15px;
+    height: 15px;
+    right:45px;
+    top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

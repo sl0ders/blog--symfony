@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Services\NotificationService;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -34,7 +35,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route("/register", name: "app_register")]
-    public function register(Request $request, TranslatorInterface $translator, UserPasswordEncoderInterface $encoder): RedirectResponse|Response
+    public function register(Request $request, TranslatorInterface $translator, UserPasswordEncoderInterface $encoder, NotificationService $notificationService): RedirectResponse|Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -47,6 +48,10 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
             $this->addFlash("success", $translator->trans("registration.success", [], "FlashesMessages"));
+            $notifContent = $translator->trans("notification.user.add", [], "BlogTrans");
+            $notification = $notificationService->notify($notifContent, $user);
+            $em->persist($notification);
+            $em->flush();
             return $this->redirectToRoute("home");
         }
         return $this->render("security/register.html.twig", [
@@ -59,6 +64,6 @@ class SecurityController extends AbstractController
      */
     public function logout(): void
     {
-        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new LogicException('Cette méthode peut être vide - elle sera interceptée par la clé de déconnexion de votre pare-feu.');
     }
 }
