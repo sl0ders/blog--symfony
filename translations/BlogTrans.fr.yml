@@ -114,10 +114,11 @@ global:
       admin: 'Administration'
       register: "S'inscrire"
       add: 'Ajouter +'
-    rate: ' vote'
+    rate: "vote"
     whatThingOfThisPost: 'Que pensez-vous de cet article ?'
     thanksForRate: 'Merci pour le vote ! '
     alreadyVoted: 'Vos avez deja voté !'
+    average: 'Moyenne'
 
 notification:
   user:

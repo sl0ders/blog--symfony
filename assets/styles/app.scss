@@ -290,11 +290,35 @@ body {
     font-size: 0.8rem;
     width: 15px;
     height: 15px;
-    right:45px;
+    right: 45px;
     top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  img {
+    &.align-left {
+      margin: 0 15px 15px 0;
+      float: left
+    }
+    &.align-right {
+      margin: 0 0 15px 15px;
+      float: right
+    }
+  }
+
+  p {
+   &.align-left {
+      text-align: left;
+    }
+
+    &.align-right {
+      text-align: right;
+    }
+  }
+
+  .clear {
+    clear: both;
+  }
 }

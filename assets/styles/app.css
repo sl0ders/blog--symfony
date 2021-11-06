@@ -229,5 +229,22 @@ body .notif-lenght {
   justify-content: center;
   align-items: center;
 }
+body img.align-left {
+  margin: 0 15px 15px 0;
+  float: left;
+}
+body img.align-right {
+  margin: 0 0 15px 15px;
+  float: right;
+}
+body p.align-left {
+  text-align: left;
+}
+body p.align-right {
+  text-align: right;
+}
+body .clear {
+  clear: both;
+}
 
 /*# sourceMappingURL=app.css.map */

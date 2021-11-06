@@ -4,66 +4,58 @@
 
 {% block body %}
     <div class="pt-4">
-        <div class="shadow p-3 m-5 bg-white rounded">
-            <h1 class="section-heading">{{ post.title }}</h1>
-            <div class="text-center">
-                <img src="{{ vich_uploader_asset(post, "imageFile") | imagine_filter("my_thumb") }}" alt="">
-            </div>
-            <p><em>{{ post.chapter.number }} - {{ post.chapter.title }}</em></p>
-            <p>{{ post.content | raw }}</p>
-            <div class="d-flex">
-                <i onclick="rating(1)" class="text-decoration-none text-warning far fa-star"
-                   style="cursor: pointer"> </i>
-                <i onclick="rating(2)" class="text-warning far fa-star"
-                   style="cursor: pointer"> </i>
-                <i onclick="rating(3)" class="text-warning far fa-star"
-                   style="cursor: pointer"> </i>
-                <i onclick="rating(4)" class="text-warning far fa-star"
-                   style="cursor: pointer"> </i>
-                <i onclick="rating(5)" class="text-warning far fa-star"
-                   style="cursor: pointer"> </i>
-                <em class="h6 d-flex">
-                    <div class="rateLength"> {{ post.ratings | length }} </div> {{ "global.text.rate" | trans }}{{ post.ratings| length > 1 ? "s" }}
-                </em>
-            </div>
-            <hr>
-            {% if is_granted("ROLE_USER") %}
-                {% if not userRatingExist %}
-                    <div class="text-center user-rate">
-                        <p>{{ "global.text.whatThingOfThisPost" | trans }}</p>
-                        <a id="star-1" onclick="rating(1)" class="text-decoration-none text-warning far fa-star fa-3x"
-                           style="cursor: pointer"> </a>
-                        <a id="star-2" onclick="rating(2)" class="text-decoration-none text-warning far fa-star fa-3x"
-                           style="cursor: pointer"> </a>
-                        <a id="star-3" onclick="rating(3)" class="text-decoration-none text-warning far fa-star fa-3x"
-                           style="cursor: pointer"> </a>
-                        <a id="star-4" onclick="rating(4)" class="text-decoration-none text-warning far fa-star fa-3x"
-                           style="cursor: pointer"> </a>
-                        <a id="star-5" onclick="rating(5)" class="text-decoration-none text-warning far fa-star fa-3x"
-                           style="cursor: pointer"> </a>
-                    </div>
-                {% else %}
-                    <p class="text-success text-center">{{ "global.text.alreadyVoted" | trans }}</p>
-                {% endif %}
-            {% endif %}
-
-        </div>
-        <div class="col-md-9 m-auto">
-            <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
-            {% for comment in comments %}
-                <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | time_diff }}</em></h6>
-                <p>{{ comment.content }}</p>
-                <hr>
-            {% endfor %}
-            <br>
-            {% if is_granted("ROLE_USER") %}
-                {{ form_start(form) }}
-                {{ form_end(form) }}
+         <div class="shadow p-3 m-5 bg-white rounded">
+         <em>{{ post.chapter.number }} - {{ post.chapter.title }}</em>
+         <h1 class="section-heading text-center">{{ post.title }}</h1>
+             <div class="mt-2">
+                 <img class="align-right mx-5" src="{{ vich_uploader_asset(post, "imageFile") }}" alt="" width="300"
+                     height="500">
+                 <p class="align-right">{{ post.content | raw }}</p>
+             </div>
+         <em class="h5 d-flex">
+         {{ "global.text.average" | trans }}&nbsp;  <i class="text-warning fas fa-star"></i>&nbsp;{{ rateAverage | format_number({fraction_digit: 1}) }}/5&nbsp;
+         <div class="h6 d-flex mt-1 fw-bold">
+         <div class="rateLength">&nbsp;{{ post.ratings | length }}&nbsp;</div>
+         {{ "global.text.rate" | trans }}{{ post.ratings| length > 1 ? "s" }}
+         </div>
+         </em>
+        {% if is_granted("ROLE_USER") %}
+            {% if not userRatingExist %}
+                <div class="text-center user-rate">
+                    <p>{{ "global.text.whatThingOfThisPost" | trans }}</p>
+                    <a id="star-1" onclick="rating(1)" class="text-decoration-none text-warning far fa-star fa-3x"
+                       style="cursor: pointer"> </a>
+                    <a id="star-2" onclick="rating(2)" class="text-decoration-none text-warning far fa-star fa-3x"
+                       style="cursor: pointer"> </a>
+                    <a id="star-3" onclick="rating(3)" class="text-decoration-none text-warning far fa-star fa-3x"
+                       style="cursor: pointer"> </a>
+                    <a id="star-4" onclick="rating(4)" class="text-decoration-none text-warning far fa-star fa-3x"
+                       style="cursor: pointer"> </a>
+                    <a id="star-5" onclick="rating(5)" class="text-decoration-none text-warning far fa-star fa-3x"
+                       style="cursor: pointer"> </a>
+                </div>
             {% else %}
-                <h3 class="m-auto text-danger text-center mb-5">{{ "global.text.connection-obligatory"| trans }}</h3>
+                <p class="text-success text-center">{{ "global.text.alreadyVoted" | trans }}</p>
             {% endif %}
-        </div>
+        {% endif %}
+
     </div>
+    <div class="col-md-9 m-auto">
+        <h4 class="mt-5 mb-5">{{ post.comments ? post.comments.count }} {{ "comment.comment"| trans }}{{ post.comments.count>1 ? "s" }}</h4>
+        {% for comment in comments %}
+            <h6><em>{{ comment.author }}</em> <em> le {{ comment.createdAt | time_diff }}</em></h6>
+            <p>{{ comment.content }}</p>
+            <hr>
+        {% endfor %}
+        <br>
+        {% if is_granted("ROLE_USER") %}
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        {% else %}
+            <h3 class="m-auto text-danger text-center mb-5">{{ "global.text.connection-obligatory"| trans }}</h3>
+        {% endif %}
+    </div>
+    {# </div> #}
     <script>
         let rateLength = $(".rateLength")
         let userRate = $(".user-rate")

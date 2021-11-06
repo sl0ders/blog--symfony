@@ -35,7 +35,7 @@ class Post
      * @ORM\Column(type="text")
      */
     #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 800)]
+    #[Assert\Length(min: 3)]
     private $content;
 
     /**
@@ -61,12 +61,12 @@ class Post
     private $comments;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean" , nullable="true")
      */
     private $enabled;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable="true")
      */
     private $image;
 
